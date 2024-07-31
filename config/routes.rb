@@ -1,5 +1,27 @@
 Rails.application.routes.draw do
-  root to: "pages#home"
+  devise_for :users
+
+  resources :tasks do
+    resources :subtasks, only: [:create, :update, :destroy]
+    member do
+      patch :mark_as_completed
+      patch :set_priority
+      post :set_reminder
+    end
+  end
+
+  resources :categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        patch :deactivate
+      end
+    end
+    resources :activity_logs, only: [:index, :show]
+  end
+
+  root to: 'tasks#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
