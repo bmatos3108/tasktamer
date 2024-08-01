@@ -1,6 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #f0f8ff;
+  background: linear-gradient(to right, #75bcff, #7ee7ff);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,8 +40,8 @@ body {
   }
 }
 
-.container {
-  background: rgba(255, 255, 255, 0.8);
+.sessions-container {
+  background: rgba(103, 232, 255, 0.8);
   padding: 2em;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
