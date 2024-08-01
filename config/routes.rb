@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  # Routes for FunQuotes
+  get 'fun_quotes/index'
+  get 'home', to: 'pages#home'
+
+  # Devise routes for user authentication
   devise_for :users
 
+  # Resource routes for tasks, including nested resources for subtasks
   resources :tasks do
     resources :subtasks, only: [:create, :update, :destroy]
+
     member do
       patch :mark_as_completed
       patch :set_priority
@@ -10,8 +17,10 @@ Rails.application.routes.draw do
     end
   end
 
+  # Resource routes for categories
   resources :categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
+  # Admin namespace with routes for users and activity logs
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update] do
       member do
@@ -21,13 +30,9 @@ Rails.application.routes.draw do
     resources :activity_logs, only: [:index, :show]
   end
 
+  # Health check route
+  get 'up' => 'rails/health#show', as: :rails_health_check
+
+  # Root path
   root to: 'tasks#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

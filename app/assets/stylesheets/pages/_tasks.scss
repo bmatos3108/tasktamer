@@ -1,0 +1,90 @@
+.task-form-container {
+  background-color: #ffffff; /* White background for the form container */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Padding inside the container */
+  margin: 20px auto; /* Center the container */
+  max-width: 400px; /* Maximum width of the form container */
+}
+
+/* Title styles */
+.task-form-title {
+  color: #0c86ff; /* Dark blue color for the title */
+  font-size: 24px; /* Font size for the title */
+  margin-bottom: 20px; /* Space below the title */
+  text-align: center; /* Center the title text */
+}
+
+/* Label styles */
+.task-form-label {
+  color: #0c86ff; /* Dark blue color for the labels */
+  font-weight: bold; /* Bold font for labels */
+  margin-top: 10px; /* Space above each label */
+}
+
+/* Button styles */
+.btn-custom {
+  background-color: #0c86ff; /* Dark blue background for buttons */
+  color: #ffffff; /* White text color for buttons */
+  border: none; /* Remove border from buttons */
+  border-radius: 4px; /* Rounded corners for buttons */
+  padding: 10px 20px; /* Padding inside buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for button text */
+}
+
+.btn-custom:hover {
+  background-color: #0056b3; /* Darker blue background on hover */
+  color: #ffffff; /* Ensure text stays white on hover */
+  border-radius: 10px; /* Slightly more rounded corners on hover */
+}
+
+/* Back to Tasks button styles */
+.btn-secondary-custom {
+  background-color: #007bff; /* Blue background for secondary buttons */
+  color: #ffffff; /* White text color for secondary buttons */
+  border: none; /* Remove border from secondary buttons */
+  border-radius: 4px; /* Rounded corners for secondary buttons */
+  padding: 10px 30px; /* Padding inside secondary buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for secondary button text */
+  margin-top: 10px; /* Space above the button */
+}
+
+.btn-secondary-custom:hover {
+  background-color: #ffffff; /* White background on hover */
+  color: #0c86ff; /* Dark blue text color on hover */
+  border: 1px solid #0c86ff; /* Add border to match text color */
+}
+
+/* Due date picker styles */
+.datetime-select {
+  background-color: #ffffff; /* White background for date picker */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ced4da; /* Border color */
+  padding: 5px; /* Padding inside date picker */
+  color: #0c86ff; /* Dark blue text color */
+}
+
+/* Due date select styles */
+.datetime-select select {
+  background-color: #ffffff; /* White background for select elements */
+  color: #0c86ff; /* Dark blue text color */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px; /* Padding inside select elements */
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px; /* Space below each form group */
+}
+
+/* Space between buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px; /* Add space between buttons and form */
+}
+

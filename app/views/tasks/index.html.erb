@@ -1,16 +1,33 @@
-<h1>Tasks</h1>
-<%= link_to 'New Task', new_task_path %>
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task %>
-      <%= link_to 'Edit', edit_task_path(task) %>
-      <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% if task.completed %>
-        <span>Completed</span>
-      <% else %>
-        <%= link_to 'Mark as completed', mark_as_completed_task_path(task), method: :patch %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tasks</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="tasks-container">
+    <h1 class="tasks-title">Tasks</h1>
+    <%= link_to 'New Task', new_task_path, class: 'btn btn-new-task' %>
+    <ul class="tasks-list">
+      <% @tasks.each do |task| %>
+        <li class="task-item">
+          <div class="task-box">
+            <h2 class="task-title"><%= link_to task.title, task %></h2>
+            <p class="task-actions">
+              <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-edit' %>
+              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+              <% if task.completed %>
+                <span class="task-completed">Completed</span>
+              <% else %>
+                <%= link_to 'Mark as completed', mark_as_completed_task_path(task), method: :patch, class: 'btn btn-complete' %>
+              <% end %>
+            </p>
+          </div>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </div>
+  <%= javascript_include_tag 'application' %>
+</body>
+</html>
