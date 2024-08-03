@@ -13,4 +13,5 @@
 //
 //= require jquery
 //= require bootstrap
+//= require sidebar
 //= require_tree .

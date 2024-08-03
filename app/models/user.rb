@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_one_attached :shopping_list
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+         validates :name, presence: true
 end

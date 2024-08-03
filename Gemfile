@@ -49,8 +49,12 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
+gem 'simple_calendar'
 gem "devise"
 gem 'jquery-rails'
+
+# Google API client gem
+#gem 'google-api-client', '~> 0.53.0'
 
 group :development, :test do
   gem "dotenv-rails"

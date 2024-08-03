@@ -1,0 +1,11 @@
+<h1>Full Calendar View</h1>
+<%= month_calendar(events: @events) do |date, events| %>
+  <div class="day">
+    <%= date %>
+    <% events.each do |event| %>
+      <div class="event">
+        <%= event.title %> - <%= event.start_date.strftime('%H:%M') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
