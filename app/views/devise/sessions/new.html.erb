@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 </head>
 <body>
   <div class="snowflakes" aria-hidden="true"></div>
 
-  <div class="sign-in-container">
+  <div class="sessions-container">
     <h2>Sign In</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
@@ -26,8 +28,7 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
-     <p>Don't have an account? <%= link_to 'Sign up', new_user_registration_path %></p>
-  </div>
+    <p>Don't have an account? <%= link_to 'Sign up', new_user_registration_path %></p>
   </div>
 </body>
 </html>

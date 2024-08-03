@@ -4,13 +4,17 @@
   <title>TaskTamer</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 </head>
 <body>
   <div class="page-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <%= render 'shared/sidebar_content' %>
-    </div>
+    <% if user_signed_in? %>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <%= render 'shared/sidebar_content' %>
+      </div>
+    <% end %>
 
     <!-- Main content area -->
     <div class="main-content">

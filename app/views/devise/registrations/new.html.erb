@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 </head>
 <body>
   <div class="snowflakes" aria-hidden="true"></div>
@@ -14,6 +17,9 @@
       <%= devise_error_messages! %>
 
       <div class="form-inputs">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true %>
+
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
