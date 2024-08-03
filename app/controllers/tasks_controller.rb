@@ -28,9 +28,17 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      if request.xhr? # Check if the request is an AJAX request
+        render json: @task, status: :created
+      else
+        redirect_to @task, notice: 'Task was successfully created.'
+      end
     else
-      render :new
+      if request.xhr?
+        render json: @task.errors, status: :unprocessable_entity
+      else
+        render :new
+      end
     end
   end
 
@@ -42,31 +50,33 @@ class TasksController < ApplicationController
   # Updates an existing task
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      if request.xhr?
+        render json: @task, status: :ok
+      else
+        redirect_to @task, notice: 'Task was successfully updated.'
+      end
     else
-      render :edit
+      if request.xhr?
+        render json: @task.errors, status: :unprocessable_entity
+      else
+        render :edit
+      end
     end
   end
 
   # Deletes a task
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+    if request.xhr?
+      head :no_content
+    else
+      redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+    end
   end
 
   # Displays tasks grouped by day for the current user
   def my_tasks
     @tasks = current_user.tasks
-  end
-
-  # Displays a list of grocery items
-  def grocery_list
-    @groceries = current_user.groceries
-  end
-
-  # Displays thoughts for the current user
-  def thoughts
-    @thoughts = current_user.thoughts
   end
 
   private

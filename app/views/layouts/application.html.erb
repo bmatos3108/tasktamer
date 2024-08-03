@@ -4,8 +4,9 @@
   <title>TaskTamer</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'script', 'data-turbo-track': 'reload' %> <!-- Include your script -->
 </head>
 <body>
   <div class="page-container">
@@ -15,7 +16,8 @@
         <%= render 'shared/sidebar_content' %>
       </div>
     <% end %>
-
+    <%= render 'shared/navbar' %>
+    <div class="page-container">
     <!-- Main content area -->
     <div class="main-content">
       <%= yield %>

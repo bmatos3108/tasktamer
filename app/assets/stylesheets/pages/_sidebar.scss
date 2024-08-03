@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
+  text-decoration: white;
 }
 
 // Container to hold sidebar and main content
@@ -9,12 +10,13 @@ html, body {
   display: flex;
   height: 100vh; /* Full viewport height */
   margin: 0; /* Remove default margin */
+  background-color: #00FFFF;
 }
 
 // Sidebar Styles
 .sidebar {
   width: 250px; /* Adjust width as needed */
-  background-color: #fff;
+  background-color: #00FFFF;
   border-right: 1px solid #ddd; /* Border to separate sidebar from content */
   padding: 20px; /* Padding around content */
   box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional shadow for effect */

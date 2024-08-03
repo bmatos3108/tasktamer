@@ -14,4 +14,5 @@
 //= require jquery
 //= require bootstrap
 //= require sidebar
+//= require todo
 //= require_tree .
