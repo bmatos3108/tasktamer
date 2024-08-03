@@ -1,0 +1,31 @@
+
+#calendar {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#calendar h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#calendar form {
+  display: flex;
+  flex-direction: column;
+}
+
+#calendar form input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#calendar form input[type="submit"]:hover {
+  background-color: #0056b3;
+}

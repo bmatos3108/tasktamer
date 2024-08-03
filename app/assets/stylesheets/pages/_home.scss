@@ -1,1 +1,59 @@
 // Specific CSS for your home-page
+.TasksToolBar__content__bg {
+  align-items: center;
+  background-color: var(--toolbar-button-bg-color);
+  border-radius: 10rem;
+  box-shadow: var(--toolbar-shadow);
+  display: flex;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 var(--toolbar-button-bar-h-padding);
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+.TasksToolBar__content {
+  --offset-right: calc(36px + var(--app-header-control-width) + var(--toolbar-button-bar-h-padding)*2);
+  display: flex;
+  max-width: calc(100% - var(--offset-right));
+  position: absolute;
+  transition: max-width var(--app-sidebar-in-out-transition-speed);
+  width: 100%;
+}
+
+.TasksToolBar {
+  background: var(--toolbar-button-bg-color);
+  color: var(--color-text-1);
+  line-height: var(--toolbar-height);
+  position: relative;
+  transition-duration: var(--app-sidebar-in-out-transition-speed);
+  transition-property: transform;
+  width: calc(100% - var(--app-sidebar-close-width));
+}
+
+body {
+  background: none;
+  color: var(--color-text-1);
+  font-family: var(--default-font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height);
+  margin: 0;
+  overflow-y: hidden;
+  padding: 0;
+}
+.page-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px; /* Adjust as needed */
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}

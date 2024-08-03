@@ -1,16 +1,20 @@
-<h1>Tasks</h1>
-<%= link_to 'New Task', new_task_path %>
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task %>
-      <%= link_to 'Edit', edit_task_path(task) %>
-      <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% if task.completed %>
-        <span>Completed</span>
-      <% else %>
-        <%= link_to 'Mark as completed', mark_as_completed_task_path(task), method: :patch %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="todo-header">
+  <h2>ToDo List</h2>
+  <img src="<%= asset_path('notebook.gif') %>" height="50px" />
+</div>
+
+<div class="todo-body">
+  <input
+    type="text"
+    id="todoText"
+    class="todo-input"
+    placeholder="Add your items"
+  />
+  <img
+    src="<%= asset_path('plus.png') %>"
+    alt="+"
+    id="AddUpdateClick"
+  />
+</div>
+
+<div id="list-items"></div>

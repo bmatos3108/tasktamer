@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tasktamer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TaskTamer</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'script', 'data-turbo-track': 'reload' %> <!-- Include your script -->
 </head>
 <body>
-  <%= yield %>
+  <div class="page-container">
+    <% if user_signed_in? %>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <%= render 'shared/sidebar_content' %>
+      </div>
+    <% end %>
+    <%= render 'shared/navbar' %>
+    <div class="page-container">
+    <!-- Main content area -->
+    <div class="main-content">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

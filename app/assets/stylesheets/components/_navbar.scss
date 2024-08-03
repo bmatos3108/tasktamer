@@ -1,12 +1,43 @@
-.navbar-lewagon {
+.navbar {
+  padding: 20px;
+}
+
+.todo-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-left: 5px;
+  justify-content: center;
+}
+
+.todo-header h2 {
+  margin: 0;
+}
+
+.todo-body {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background: white;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.todo-body input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 15px 0;
+  font-size: 20px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.todo-body img {
+  cursor: pointer;
+  border-radius: 40px;
+  height: 55px;
+  width: 55px;
+  padding: 15px;
+  background: rgb(0, 221, 255);
 }

@@ -1,0 +1,16 @@
+
+#groceries {
+  padding: 20px;
+}
+
+.grocery-item {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.grocery-item.completed {
+  text-decoration: line-through;
+}

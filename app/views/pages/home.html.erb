@@ -1,2 +1,19 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- app/views/home/index.html.erb -->
+<div class="home-page">
+  <div class="column">
+    <h2>My Tasks</h2>
+    <% if @tasks.any? %>
+      <ul>
+        <% @tasks.each do |task| %>
+          <li><%= task.title %> - <%= task.due_date %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You don't have tasks.</p>
+    <% end %>
+  </div>
+  <div class="column">
+    <h2>My Day</h2>
+    <%= render 'calendar' %> <!-- Embed calendar partial -->
+  </div>
+</div>

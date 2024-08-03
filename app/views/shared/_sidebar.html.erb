@@ -1,0 +1,42 @@
+<!-- app/views/shared/_sidebar.html.erb -->
+<div class="sidebar-content">
+  <h2>Sidebar</h2> <!-- You can add a title if needed -->
+  <ul>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Tasks', tasks_path %></li>
+    <li><%= link_to 'Categories', categories_path %></li>
+    <li><%= link_to 'Profile', edit_user_registration_path %></li>
+    <!-- Add more links as needed -->
+     <!-- Add the calendar directly in the sidebar -->
+  <h2>Calendar</h2>
+  <%= month_calendar(events: @events) do |date, events| %>
+    <div class="day">
+      <%= date %>
+      <% events.each do |event| %>
+        <div class="event">
+          <%= event.title %> - <%= event.start_date.strftime('%H:%M') %>
+        </div>
+
+        <!-- Sidebar Profile Section -->
+<div class="AppSidebarProfile">
+  <% if user_signed_in? %>
+    <button type="button" class="AppSidebarProfile__button">
+      <%= current_user.name %>
+    </button>
+    <div class="AppSidebarProfile__settings">
+      <a href="<%= edit_user_path(current_user) %>" class="AppSidebarProfile__settingsLink">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="#000" stroke-width="1.5" d="M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"/>
+          <path stroke="#000" stroke-width="1.5" d="M18.656 21.75H5.344a2.25 2.25 0 0 1-2.25-2.25v-1.406c0-.596.145-1.182.423-1.707a7.455 7.455 0 0 1 6.582-3.964h4.802a7.455 7.455 0 0 1 6.582 3.964c.278.525.423 1.111.423 1.707v1.406a2.25 2.25 0 0 1-2.25 2.25Z"/>
+        </svg>
+      </a>
+    </div>
+  <% else %>
+    <p>Please <%= link_to 'sign in', new_user_session_path %> to access your profile.</p>
+  <% end %>
+</div>
+      <% end %>
+    </div>
+  </ul>
+
+</div>

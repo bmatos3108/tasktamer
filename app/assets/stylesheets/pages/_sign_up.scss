@@ -1,0 +1,99 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to right, #75bcff, #7ee7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: #fff;
+  font-size: 1.5em;
+  user-select: none;
+  will-change: transform;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+.sign-up-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 2;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-inputs label {
+  margin-top: 1em;
+}
+
+.form-inputs input[type="email"],
+.form-inputs input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-actions {
+  margin-top: 1em;
+}
+
+.form-actions input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.form-actions input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.sessions-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.sessions-container a:hover {
+  text-decoration: underline;
+}

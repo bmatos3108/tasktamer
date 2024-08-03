@@ -1,0 +1,12 @@
+<%= render 'shared/navbar' %>
+
+<div class="tasks-list">
+  <% @tasks_by_date.each do |date, tasks| %>
+    <h3><%= date %></h3>
+    <ul>
+      <% tasks.each do |task| %>
+        <li><%= task.title %> - <%= task.due_date %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
