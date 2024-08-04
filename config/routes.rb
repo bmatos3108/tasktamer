@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'groceries/index'
+  get 'groceries/new'
+  get 'groceries/create'
   # Google Calendar integration
   get 'calendar', to: 'calendar#index', as: :calendar
   post 'calendar/events', to: 'calendar#create_event', as: :create_calendar_event
@@ -16,10 +19,9 @@ Rails.application.routes.draw do
       patch :mark_as_completed
       patch :set_priority
       post :set_reminder
+      delete :remove_reminder
     end
   end
-
-  get 'tasks/next-seven-days', to: 'tasks#next_seven_days', as: :next_seven_days
 
   # User authentication
   devise_for :users

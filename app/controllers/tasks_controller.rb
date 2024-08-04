@@ -4,6 +4,11 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def show
+    @task = Task.find(params[:id])
+    @notes = Note.where(task_id: @task.id)
+  end
+
   def create
     @task = Task.new(task_params)
     if @task.save
@@ -11,6 +16,23 @@ class TasksController < ApplicationController
     else
       render json: { error: 'Error saving task' }, status: :unprocessable_entity
     end
+  end
+
+  def create_reminder
+    @reminder = @task.reminders.new(reminder_params)
+    if @reminder.save
+      # Optionally set up background jobs for reminders
+      # ReminderJob.set(wait_until: @reminder.reminder_at).perform_later(@reminder)
+      redirect_to @task, notice: 'Reminder was successfully created.'
+    else
+      redirect_to @task, alert: 'Failed to create reminder.'
+    end
+  end
+
+  def destroy_reminder
+    @reminder = @task.reminders.find(params[:id])
+    @reminder.destroy
+    redirect_to @task, notice: 'Reminder was successfully deleted.'
   end
 
   # Other actions (edit, update, destroy, etc.)

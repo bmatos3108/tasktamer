@@ -2,16 +2,14 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar Profile Image Input -->
-    <input type="button" tab-index="-1" accept="image/png, image/jpeg" class="AppSidebarProfileImage__input">
+ 
 
     <!-- Sidebar Navigation List -->
     <ul class="AppSidebarUl">
       <li class="AppSidebarGroupsItems__item">
         <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= root_path %>">
           <div class="AppSidebarGroupsItems__item__categoryIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M12 2v20m10-10H2" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <img src="<%= asset_path('home.png') %>" alt="Home" width="24" height="24">
           </div>
           <div class="AppSidebarGroupsItems__item__categoryTitle">
             <div class="AppSidebarGroupsItems__item__categoryTitleWrapper">Home</div>
@@ -20,24 +18,9 @@
       </li>
 
       <li class="AppSidebarGroupsItems__item">
-  <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= next_seven_days_path %>">
-    <div class="AppSidebarGroupsItems__item__categoryIcon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path d="M12 2v20m10-10H2" stroke="currentColor" stroke-width="2"/>
-      </svg>
-    </div>
-    <div class="AppSidebarGroupsItems__item__categoryTitle">
-      Tasks for the Next 7 Days
-    </div>
-  </a>
-</li>
-
-      <li class="AppSidebarGroupsItems__item">
         <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= tasks_path %>">
           <div class="AppSidebarGroupsItems__item__categoryIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M12 2v20m10-10H2" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <img src="<%= asset_path('alltasks.png') %>" alt="All Tasks" width="24" height="24">
           </div>
           <div class="AppSidebarGroupsItems__item__categoryTitle">
             <div class="AppSidebarGroupsItems__item__categoryTitleWrapper">All Tasks</div>
@@ -48,9 +31,7 @@
       <li class="AppSidebarGroupsItems__item">
         <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= groceries_path %>">
           <div class="AppSidebarGroupsItems__item__categoryIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M12 2v20m10-10H2" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <img src="<%= asset_path('calendar.png') %>" alt="Calendar" width="24" height="24">
           </div>
           <div class="AppSidebarGroupsItems__item__categoryTitle">
             <div class="AppSidebarGroupsItems__item__categoryTitleWrapper">Grocery List</div>
@@ -61,9 +42,7 @@
       <li class="AppSidebarGroupsItems__item">
         <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= thoughts_path %>">
           <div class="AppSidebarGroupsItems__item__categoryIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M12 2v20m10-10H2" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <img src="<%= asset_path('thoughts.png') %>" alt="Thoughts" width="24" height="24">
           </div>
           <div class="AppSidebarGroupsItems__item__categoryTitle">
             <div class="AppSidebarGroupsItems__item__categoryTitleWrapper">Thoughts</div>
@@ -71,13 +50,10 @@
         </a>
       </li>
 
-      <!-- New Calendar Link -->
       <li class="AppSidebarGroupsItems__item">
         <a role="button" aria-disabled="false" aria-roledescription="sortable" aria-describedby="" draggable="false" class="AppSidebarGroupsItems__item__link" href="<%= calendar_path %>">
           <div class="AppSidebarGroupsItems__item__categoryIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M3 5h18M3 10h18M3 15h18M3 20h18" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <img src="<%= asset_path('calendar.png') %>" alt="Calendar" width="24" height="24">
           </div>
           <div class="AppSidebarGroupsItems__item__categoryTitle">
             <div class="AppSidebarGroupsItems__item__categoryTitleWrapper">Calendar</div>
