@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Task Details</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-<body>
-  <h1>Task Details</h1>
+<% if @task %>
   <p>
     <strong>Title:</strong>
     <%= @task.title %>
@@ -15,19 +7,7 @@
     <strong>Description:</strong>
     <%= @task.description %>
   </p>
-  <p>
-    <strong>Due Date:</strong>
-    <%= @task.due_date %>
-  </p>
-  <p>
-    <strong>Priority:</strong>
-    <%= @task.priority %>
-  </p>
-  <p>
-    <strong>Completed:</strong>
-    <%= @task.completed ? 'Yes' : 'No' %>
-  </p>
-  <%= link_to 'Edit', edit_task_path(@task), class: 'btn btn-custom' %>
-  <%= link_to 'Back to Tasks', tasks_path, class: 'btn btn-secondary-custom' %>
-</body>
-</html>
+  <!-- Add other task details here -->
+<% else %>
+  <p>Task not found.</p>
+<% end %>

@@ -1,105 +1,112 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const todoValue = document.getElementById("todoText");
-  const todoAlert = document.getElementById("Alert");
-  const listItems = document.getElementById("list-items");
-  const addUpdate = document.getElementById("AddUpdateClick");
+document.addEventListener('DOMContentLoaded', () => {
+  const addButton = document.getElementById('AddUpdateClick');
+  const todoText = document.getElementById('todoText');
+  const listItems = document.getElementById('list-items');
 
-  let todo = JSON.parse(localStorage.getItem("todo-list")) || [];
+  // Load tasks from local storage
+  const loadTasks = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => addTaskToDOM(task, false));
+  };
 
-  ReadToDoItems();
-
-  addUpdate.addEventListener("click", CreateToDoItems);
-
-  function CreateToDoItems() {
-    if (todoValue.value === "") {
-      todoAlert.innerText = "Please enter your todo text!";
-      todoValue.focus();
-    } else {
-      let IsPresent = false;
-      todo.forEach((element) => {
-        if (element.item == todoValue.value) {
-          IsPresent = true;
-        }
-      });
-
-      if (IsPresent) {
-        setAlertMessage("This item already present in the list!");
-        return;
-      }
-
-      let li = document.createElement("li");
-      const todoItems = `<div title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${todoValue.value}</div><div>
-                        <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />
-                        <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div>`;
-      li.innerHTML = todoItems;
-      listItems.appendChild(li);
-
-      let itemList = { item: todoValue.value, status: false };
-      todo.push(itemList);
-      setLocalStorage();
-    }
-    todoValue.value = "";
-    setAlertMessage("Todo item Created Successfully!");
-  }
-
-  function ReadToDoItems() {
-    todo.forEach((element) => {
-      let li = document.createElement("li");
-      let style = "";
-      if (element.status) {
-        style = "style='text-decoration: line-through'";
-      }
-      const todoItems = `<div ${style} title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${element.item}
-      ${style === "" ? "" : '<img class="todo-controls" src="/images/check-mark.png" />'}</div><div>
-      ${style === "" ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />' : ""}
-      <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div>`;
-      li.innerHTML = todoItems;
-      listItems.appendChild(li);
+  // Save tasks to local storage
+  const saveTasks = () => {
+    const tasks = [];
+    document.querySelectorAll('.task-item').forEach(taskItem => {
+      const taskContent = taskItem.querySelector('.task-content').textContent.trim();
+      const taskNote = taskItem.querySelector('.task-note').value.trim();
+      const completed = taskItem.style.textDecoration === 'line-through';
+      tasks.push({ content: taskContent, note: taskNote, completed });
     });
-  }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  };
 
-  function UpdateToDoItems(e) {
-    if (e.parentElement.parentElement.querySelector("div").style.textDecoration === "") {
-      todoValue.value = e.parentElement.parentElement.querySelector("div").innerText;
-      updateText = e.parentElement.parentElement.querySelector("div");
-      addUpdate.setAttribute("onclick", "UpdateOnSelectionItems()");
-      addUpdate.setAttribute("src", "/images/refresh.png");
-      todoValue.focus();
+  // Add task to DOM
+  const addTaskToDOM = (task, save = true) => {
+    const taskItem = document.createElement('div');
+    taskItem.className = 'task-item';
+    if (task.completed) {
+      taskItem.style.textDecoration = 'line-through';
     }
-  }
 
-  function UpdateOnSelectionItems() {
-    let IsPresent = false;
-    todo.forEach((element) => {
-      if (element.item == todoValue.value) {
-        IsPresent = true;
+    const taskContent = document.createElement('div');
+    taskContent.className = 'task-content';
+    taskContent.textContent = task.content;
+    taskItem.appendChild(taskContent);
+
+    const taskNote = document.createElement('textarea');
+    taskNote.className = 'task-note';
+    taskNote.value = task.note;
+    taskNote.style.display = task.note ? 'block' : 'none'; // Initially hide empty notes
+    taskItem.appendChild(taskNote);
+
+    const taskControls = document.createElement('div');
+    taskControls.className = 'task-controls';
+
+    const addNoteButton = document.createElement('button');
+    addNoteButton.textContent = 'Add Note';
+    addNoteButton.addEventListener('click', () => {
+      taskNote.style.display = taskNote.style.display === 'none' ? 'block' : 'none';
+      saveTasks();
+    });
+
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', () => {
+      if (taskContent.isContentEditable) {
+        taskContent.contentEditable = 'false';
+        editButton.textContent = 'Edit';
+        saveTasks();
+      } else {
+        taskContent.contentEditable = 'true';
+        editButton.textContent = 'Save';
       }
     });
 
-    if (IsPresent) {
-      setAlertMessage("This item already present in the list!");
-      return;
-    }
-
-    todo.forEach((element) => {
-      if (element.item == updateText.innerText.trim()) {
-        element.item = todoValue.value;
-      }
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+      listItems.removeChild(taskItem);
+      saveTasks();
     });
-    setLocalStorage();
 
-    updateText.innerText = todoValue.value;
-    addUpdate.setAttribute("onclick", "CreateToDoItems()");
-    addUpdate.setAttribute("src", "/images/plus.png");
-    todoValue.value = "";
-    setAlertMessage("Todo item Updated Successfully!");
-  }
+    const completeButton = document.createElement('button');
+    completeButton.textContent = 'Complete';
+    completeButton.addEventListener('click', () => {
+      taskItem.style.textDecoration = 'line-through';
+      saveTasks();
+    });
 
-  function setLocalStorage() {
-    localStorage.setItem("todo-list", JSON.stringify(todo));
-  }
+    taskControls.appendChild(addNoteButton);
+    taskControls.appendChild(editButton);
+    taskControls.appendChild(deleteButton);
+    taskControls.appendChild(completeButton);
 
-  function setAlertMessage(message) {
-    todoAlert.innerText = message;
-  }
+    taskItem.appendChild(taskControls);
+    listItems.appendChild(taskItem);
+
+    if (save) {
+      saveTasks();
+    }
+  };
+
+  // Add task on button click
+  addButton.addEventListener('click', () => {
+    const text = todoText.value.trim();
+    if (text) {
+      const task = { content: text, note: '', completed: false };
+      addTaskToDOM(task);
+      todoText.value = '';
+    }
+  });
+
+  // Add task on pressing Enter key
+  todoText.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      addButton.click();
+    }
+  });
+
+  // Load tasks on page load
+  loadTasks();
 });
