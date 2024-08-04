@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groceries</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
+<body>
+  <div class="container">
+    <h1>Groceries</h1>
+    <div class="header">
+      <%= link_to '+ Add Grocery', new_grocery_path, class: 'add-button' %>
+    </div>
+
+    <ul class="grocery-list">
+      <% @groceries.each do |grocery| %>
+        <li class="grocery-item">
+          <span class="grocery-name"><%= grocery.name %></span>
+          <span class="grocery-quantity"><%= grocery.quantity %></span>
+          <div class="tags">
+            <span class="tag">Vegetables</span>
+            <span class="tag">Cereals</span>
+            <span class="tag">Cookies</span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>

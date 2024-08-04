@@ -1,42 +1,97 @@
-.navbar {
-  padding: 20px;
-}
-
 .todo-header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  padding-left: 5px;
-  justify-content: center;
 }
 
 .todo-header h2 {
   margin: 0;
+  margin-right: 10px;
 }
 
 .todo-body {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #edeef0;
-  border-radius: 30px;
-  padding-left: 20px;
-  margin-bottom: 25px;
 }
 
-.todo-body input {
+.todo-input {
   flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 15px 0;
-  font-size: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.todo-body img {
+.add-icon {
   cursor: pointer;
-  border-radius: 40px;
-  height: 55px;
-  width: 55px;
+  width: 25px;
+  height: 25px;
+}
+
+#list-items {
+  margin-top: 20px;
+}
+
+.task-item {
+  background-color: #7ee7ff;
+  border: 1px solid #7ee7ff;
   padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.task-controls button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #7ee7ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-controls button:hover {
+  background-color: #7ee7ff;
+}
+
+.task-note {
+  background-color: #c0f1fb;
+  border: 1px solid #78b9ff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: block;
+  resize: none;
+}
+
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust as needed */
+}
+
+.note-item {
+  flex: 1 1 calc(33.333% - 10px); /* Adjust based on your design */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .note-item {
+    flex: 1 1 calc(50% - 10px); /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .note-item {
+    flex: 1 1 100%; /* Full width on very small screens */
+  }
 }
