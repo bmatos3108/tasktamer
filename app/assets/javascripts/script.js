@@ -1,44 +1,105 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const todoValue = document.getElementById("todoText");
+  const todoAlert = document.getElementById("Alert");
   const listItems = document.getElementById("list-items");
   const addUpdate = document.getElementById("AddUpdateClick");
 
-  // Load existing tasks from localStorage
   let todo = JSON.parse(localStorage.getItem("todo-list")) || [];
 
-  // Display tasks
-  function displayTasks() {
-    listItems.innerHTML = '';
-    todo.forEach((item, index) => {
-      listItems.innerHTML += `
-        <div class="todo-item">
-          <span>${item}</span>
-          <button onclick="removeTask(${index})">Remove</button>
-        </div>
-      `;
+  ReadToDoItems();
+
+  addUpdate.addEventListener("click", CreateToDoItems);
+
+  function CreateToDoItems() {
+    if (todoValue.value === "") {
+      todoAlert.innerText = "Please enter your todo text!";
+      todoValue.focus();
+    } else {
+      let IsPresent = false;
+      todo.forEach((element) => {
+        if (element.item == todoValue.value) {
+          IsPresent = true;
+        }
+      });
+
+      if (IsPresent) {
+        setAlertMessage("This item already present in the list!");
+        return;
+      }
+
+      let li = document.createElement("li");
+      const todoItems = `<div title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${todoValue.value}</div><div>
+                        <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />
+                        <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div>`;
+      li.innerHTML = todoItems;
+      listItems.appendChild(li);
+
+      let itemList = { item: todoValue.value, status: false };
+      todo.push(itemList);
+      setLocalStorage();
+    }
+    todoValue.value = "";
+    setAlertMessage("Todo item Created Successfully!");
+  }
+
+  function ReadToDoItems() {
+    todo.forEach((element) => {
+      let li = document.createElement("li");
+      let style = "";
+      if (element.status) {
+        style = "style='text-decoration: line-through'";
+      }
+      const todoItems = `<div ${style} title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${element.item}
+      ${style === "" ? "" : '<img class="todo-controls" src="/images/check-mark.png" />'}</div><div>
+      ${style === "" ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />' : ""}
+      <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div>`;
+      li.innerHTML = todoItems;
+      listItems.appendChild(li);
     });
   }
 
-  // Add task
-  function addTask() {
-    if (todoValue.value.trim() !== '') {
-      todo.push(todoValue.value.trim());
-      localStorage.setItem("todo-list", JSON.stringify(todo));
-      todoValue.value = ''; // Clear input field
-      displayTasks(); // Update task list display
+  function UpdateToDoItems(e) {
+    if (e.parentElement.parentElement.querySelector("div").style.textDecoration === "") {
+      todoValue.value = e.parentElement.parentElement.querySelector("div").innerText;
+      updateText = e.parentElement.parentElement.querySelector("div");
+      addUpdate.setAttribute("onclick", "UpdateOnSelectionItems()");
+      addUpdate.setAttribute("src", "/images/refresh.png");
+      todoValue.focus();
     }
   }
 
-  // Remove task
-  window.removeTask = function(index) {
-    todo.splice(index, 1);
-    localStorage.setItem("todo-list", JSON.stringify(todo));
-    displayTasks(); // Update task list display
+  function UpdateOnSelectionItems() {
+    let IsPresent = false;
+    todo.forEach((element) => {
+      if (element.item == todoValue.value) {
+        IsPresent = true;
+      }
+    });
+
+    if (IsPresent) {
+      setAlertMessage("This item already present in the list!");
+      return;
+    }
+
+    todo.forEach((element) => {
+      if (element.item == updateText.innerText.trim()) {
+        element.item = todoValue.value;
+      }
+    });
+    setLocalStorage();
+
+    updateText.innerText = todoValue.value;
+    addUpdate.setAttribute("onclick", "CreateToDoItems()");
+    addUpdate.setAttribute("src", "/images/plus.png");
+    todoValue.value = "";
+    setAlertMessage("Todo item Updated Successfully!");
   }
 
-  // Attach event listener
-  addUpdate.addEventListener('click', addTask);
+  function setLocalStorage() {
+    localStorage.setItem("todo-list", JSON.stringify(todo));
+  }
 
-  // Initial display of tasks
-  displayTasks();
+  function setAlertMessage(message) {
+    todoAlert.innerText = message;
+  }
 });

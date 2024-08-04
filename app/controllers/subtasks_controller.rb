@@ -1,28 +1,28 @@
 class SubtasksController < ApplicationController
   before_action :set_task
-  before_action :set_subtask, only: [:update, :destroy]
 
   def create
     @subtask = @task.subtasks.build(subtask_params)
-
     if @subtask.save
-      redirect_to @task, notice: 'Subtask was successfully created.'
+      redirect_to @task
     else
-      redirect_to @task, alert: 'Error creating subtask.'
+      render 'tasks/show'
     end
   end
 
   def update
+    @subtask = @task.subtasks.find(params[:id])
     if @subtask.update(subtask_params)
-      redirect_to @task, notice: 'Subtask was successfully updated.'
+      redirect_to @task
     else
-      redirect_to @task, alert: 'Error updating subtask.'
+      render 'tasks/show'
     end
   end
 
   def destroy
+    @subtask = @task.subtasks.find(params[:id])
     @subtask.destroy
-    redirect_to @task, notice: 'Subtask was successfully deleted.'
+    redirect_to @task
   end
 
   private
@@ -31,11 +31,7 @@ class SubtasksController < ApplicationController
     @task = Task.find(params[:task_id])
   end
 
-  def set_subtask
-    @subtask = @task.subtasks.find(params[:id])
-  end
-
   def subtask_params
-    params.require(:subtask).permit(:title, :description, :completed)
+    params.require(:subtask).permit(:title, :completed)
   end
 end

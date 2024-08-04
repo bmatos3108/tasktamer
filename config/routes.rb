@@ -3,23 +3,15 @@ Rails.application.routes.draw do
   get 'calendar', to: 'calendar#index', as: :calendar
   post 'calendar/events', to: 'calendar#create_event', as: :create_calendar_event
 
-  # Routes for FunQuotes
+  # FunQuotes
   get 'fun_quotes/index'
 
-  # Home page route
+  # Home page
   get 'home', to: 'pages#home'
-  get 'tasks/next-seven-days', to: 'tasks#next_seven_days', as: :next_seven_days
 
-  # Devise routes for user authentication
-  devise_for :users
-
-  # Routes for user profile editing
-  resource :user, only: [:edit, :update], controller: 'users'
-
-  # Resource routes for tasks, including nested resources for subtasks
+  # Tasks
   resources :tasks do
     resources :subtasks, only: [:create, :update, :destroy]
-
     member do
       patch :mark_as_completed
       patch :set_priority
@@ -27,16 +19,24 @@ Rails.application.routes.draw do
     end
   end
 
-  # Resource routes for categories
+  get 'tasks/next-seven-days', to: 'tasks#next_seven_days', as: :next_seven_days
+
+  # User authentication
+  devise_for :users
+
+  # User profile
+  resource :user, only: [:edit, :update], controller: 'users'
+
+  # Categories
   resources :categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  # Resource routes for grocery lists
+  # Grocery lists
   resources :groceries, only: [:index, :new, :create]
 
-  # Resource routes for thoughts
+  # Thoughts
   resources :thoughts, only: [:index, :new, :create]
 
-  # Admin namespace with routes for users and activity logs
+  # Admin namespace
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update] do
       member do
@@ -46,11 +46,11 @@ Rails.application.routes.draw do
     resources :activity_logs, only: [:index, :show]
   end
 
-  # OAuth callback route
+  # OAuth callback
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
-  # Health check route
+  # Health check
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Root path
