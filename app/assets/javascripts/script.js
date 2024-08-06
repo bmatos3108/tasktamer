@@ -3,13 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const todoText = document.getElementById('todoText');
   const listItems = document.getElementById('list-items');
 
-  // Load tasks from local storage
   const loadTasks = () => {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(task => addTaskToDOM(task, false));
   };
 
-  // Save tasks to local storage
+
   const saveTasks = () => {
     const tasks = [];
     document.querySelectorAll('.task-item').forEach(taskItem => {
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
-  // Add task to DOM
+
   const addTaskToDOM = (task, save = true) => {
     const taskItem = document.createElement('div');
     taskItem.className = 'task-item';
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskNote = document.createElement('textarea');
     taskNote.className = 'task-note';
     taskNote.value = task.note;
-    taskNote.style.display = task.note ? 'block' : 'none'; // Initially hide empty notes
+    taskNote.style.display = task.note ? 'block' : 'none';
     taskItem.appendChild(taskNote);
 
     const taskControls = document.createElement('div');
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Add task on button click
+
   addButton.addEventListener('click', () => {
     const text = todoText.value.trim();
     if (text) {
@@ -100,13 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Add task on pressing Enter key
+
   todoText.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       addButton.click();
     }
   });
 
-  // Load tasks on page load
+ 
   loadTasks();
 });

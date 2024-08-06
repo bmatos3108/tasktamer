@@ -21,8 +21,6 @@ class TasksController < ApplicationController
   def create_reminder
     @reminder = @task.reminders.new(reminder_params)
     if @reminder.save
-      # Optionally set up background jobs for reminders
-      # ReminderJob.set(wait_until: @reminder.reminder_at).perform_later(@reminder)
       redirect_to @task, notice: 'Reminder was successfully created.'
     else
       redirect_to @task, alert: 'Failed to create reminder.'
@@ -34,8 +32,6 @@ class TasksController < ApplicationController
     @reminder.destroy
     redirect_to @task, notice: 'Reminder was successfully deleted.'
   end
-
-  # Other actions (edit, update, destroy, etc.)
 
   private
 

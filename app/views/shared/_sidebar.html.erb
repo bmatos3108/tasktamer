@@ -1,13 +1,12 @@
 <!-- app/views/shared/_sidebar.html.erb -->
 <div class="sidebar-content">
-  <h2>Sidebar</h2> <!-- You can add a title if needed -->
+  <h2>Sidebar</h2>
   <ul>
     <li><%= link_to 'Home', root_path %></li>
     <li><%= link_to 'Tasks', tasks_path %></li>
     <li><%= link_to 'Categories', categories_path %></li>
     <li><%= link_to 'Profile', edit_user_registration_path %></li>
-    <!-- Add more links as needed -->
-     <!-- Add the calendar directly in the sidebar -->
+
   <h2>Calendar</h2>
   <%= month_calendar(events: @events) do |date, events| %>
     <div class="day">
@@ -17,7 +16,7 @@
           <%= event.title %> - <%= event.start_date.strftime('%H:%M') %>
         </div>
 
-        <!-- Sidebar Profile Section -->
+      
 <div class="AppSidebarProfile">
   <% if user_signed_in? %>
     <button type="button" class="AppSidebarProfile__button">

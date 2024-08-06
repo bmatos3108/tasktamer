@@ -76,22 +76,22 @@
 .notes-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Adjust as needed */
+  gap: 10px;
 }
 
 .note-item {
-  flex: 1 1 calc(33.333% - 10px); /* Adjust based on your design */
+  flex: 1 1 calc(33.333% - 10px);
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .note-item {
-    flex: 1 1 calc(50% - 10px); /* Adjust for smaller screens */
+    flex: 1 1 calc(50% - 10px);
   }
 }
 
 @media (max-width: 480px) {
   .note-item {
-    flex: 1 1 100%; /* Full width on very small screens */
+    flex: 1 1 100%; 
   }
 }
